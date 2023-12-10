@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/bootstrap-social.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/styles2.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  
+    
+    <style>
+
+video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 50px;
+            color: #fff;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+        }
+
+        #navbar {
+            height: 100vh;
+            width: 275px;
+            position: fixed;
+            background-color: #333;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 20px;
+            overflow-y: auto;
+        }
+
+        #navbar a {
+            text-decoration: none;
+            color: #fff;
+            padding: 10px;
+            margin: 5px;
+            border-bottom: 1px solid #555;
+            width: 100%;
+            text-align: center;
+        }
+
+        #main-content {
+            margin-left: 275px;
+            
+        }
+
+        .section {
+            height: 100vh;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+
+
+
+        .editView{
+          position:relative;
+          line-height: 25px;
+          width: auto;
+          
+      }
+      .flex-container > div {
+      text-align: center;
+      background-color: #f1f1f1;
+      width: 48%;
+      margin: 10px;
+      text-align: center;
+      
+      font-size: 30px;
+    }
+    .userbtn {
+      position: relative;
+      background-color: black;
+      text-align: center;
+      padding: 0%;
+    }
+    h3,h4,h5{
+      color: white;
+    }
+    p{
+      color: black;
+    }
+  
+  
+  
+  
+  
+    div.content {
+      margin-left: 200px;
+      padding: 1px 16px;
+      height: 1000px;
+    }
+  
+    
+  
+    </style>
+</head>
+<body>
+    
+
+
+    
+
+    <div id="navbar">
+        <img src="/user.svg" alt="wrong path">
+        <p style="color: antiquewhite;"><%=User.username %></p>
+        <a  href="/logoutorganization" role="button" style="background-color: red; color: white;">Log Out</a>
+        <a class="btn btn-dark" href="/allResult" style=" color: white;">View Submissions</a>
+        <a href="#1" onclick="changePage('page1','pg1')" id="pg1" style="background-color: blanchedalmond; color: #333;" class="btn">Classes</a>
+        <a href="#2" onclick="changePage('page2', 'pg2')" id="pg2" class="btn">Teachers</a>
+        <a href="#3" onclick="changePage('page3', 'pg3')" id="pg3" class="btn">Students</a>
+        <a href="#4" onclick="changePage('page4', 'pg4')" id="pg4" class="btn">Exams</a>
+        <a href="#5" onclick="changePage('page5', 'pg5')" id="pg5" class="btn">View Submissions</a>
+        <a href="#6" onclick="changePage('page6', 'pg6')" id="pg6" class="btn">Questions-Ans. Generator</a>
+        <a class="btn btn-dark" href="/genQues" style=" color: white;">View Questions</a>
+
+        <!-- Add more links as needed -->
+    </div>
+
+    <div id="main-content">
+        
+        <div id="page1"  class="section">
+            
+            <div style="text-align: center;">
+                <video autoplay loop muted>
+                    <source src="video2.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            <h1 style="color: white;">Welcome to AI-Gurukul</h1>
+            <h1 style="color: white;"><%=User.name %></h1>
+            <div class="box">
+                <div class="box">
+                    <h1>Created Classes</h1>
+                </div>
+                <%if(Clas!=false){%>
+                    <%Clas.forEach(function(clas){%>
+                        <div class="item">
+                            <h4><%=clas.className%> </h4>
+                        </div>
+                        
+                    <%})%>
+                    
+                    
+                <%}%>
+                <div class="row">
+                    <div class="box">
+                        <%if(Clas==false){%>
+                        <p style="color:red ;">Please add Class</p>
+                         <%}%>
+                        <a href="/createClass" class="btn btn-dark userbtn"><h2>Create New Class</h2></a>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+
+
+
+
+        </div>
+
+        <div id="page2" style="display: none;" class="section">
+            <div style="text-align: center;">
+                <video autoplay loop muted>
+                    <source src="video2.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <h1 style="color: white;">Welcome to AI-Gurukul</h1>
+                <h1 style="color: white;"><%=User.name %></h1>
+                <div class="box">
+                    <div class="box">
+                        <h1>Teachers</h1>
+                    </div>
+                    <%if(Teacher!=false){%>
+                        
+                        <%Teacher.forEach(function(teacher){%>
+                            
+                            <div class="item">
+                                <ul>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      View
+                                    </a>
+                                    <div class="dropdown-menu editView" aria-labelledby="navbarDropdown">
+                                        <p>Name: <%=teacher.name%></p>
+                                        <p>Username: <%=teacher.username%></p>
+                                        <p>Role: <%=teacher.role%></p>
+                                        <p><%=teacher.orgTypeOfID%>: <%=teacher.orgID%></p>
+                                        <p>Phone: <%=teacher.phone%></p>
+                                        <p>Emergency Phone: <%=teacher.optionalPhone%></p>
+                                        
+                                    </div>
+                                  </li>
+                                </ul>
+                            
+                                <h4><%=teacher.name%> </h4>
+                                <%if(teacher.approved==false){%>
+                                    <form action="/approvedelete" method="post">
+                                    <input type="hidden" name="userID" value=<%=teacher._id%>>
+                                    <button type="submit" name="Request" value="Approve" style="background-color: green;">Approve</button>
+                                    <button type="submit" name="Request" value="Reject" style="background-color: red;">Reject</button>
+                                </form>
+                                <%  }%>
+                                <%if(teacher.approved==true){%>
+                                    <form action="/approvedelete" method="post" >
+                                    <input type="hidden" name="userID" value=<%=teacher._id%>>
+                                    <button type="submit" name="Request" value="Remove" style="background-color: red;">Remove</button>
+                                </form>
+                               <% }%>
+                            </div>
+                            
+                        <%})%>
+                    
+                    <%}%>
+                    <div class="row">
+                        <div class="box">
+                            <%if(Teacher==false){%>
+                            <p style="color:red ;">Please add Teachers</p>
+                             <%}%>
+                            <a href="/addteacher" class="btn btn-dark userbtn"><h2>send message to Teachers to join</h2></a>
+                        </div>
+                    </div>
+                    
+                </div>
+
+            </div>
+        </div>
+
+        <div id="page3" class="section" style="display: none;">
+            <div style="text-align: center;">
+                <video autoplay loop muted>
+                    <source src="video2.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <h1 style="color: white;">Welcome to AI-Gurukul</h1>
+                <h1 style="color: white;"><%=User.name %></h1>
+                
+            <div class="box">
+                <div class="box">
+                    <h1>Students</h1>
+                </div>
+                <%if(Student!=false){%>
+                    
+                    <%Student.forEach(function(student){%>
+                        
+                        <div class="item">
+                            <ul>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  View
+                                </a>
+                                <div class="dropdown-menu editView" aria-labelledby="navbarDropdown">
+                                    <p>Name: <%=student.name%></p>
+                                    <p>Username: <%=student.username%></p>
+                                    <p>Role: <%=student.role%></p>
+                                    <p><%=student.orgTypeOfID%>: <%=student.orgID%></p>
+                                    <p>Phone: <%=student.phone%></p>
+                                    <p>Emergency Phone: <%=student.optionalPhone%></p>
+                                    
+                                </div>
+                              </li>
+                            </ul>
+                        
+                            <h4><%=student.name%> </h4>
+                            <%if(student.approved==false){%>
+                                <form action="/approvedelete" method="post">
+                                <input type="hidden" name="userID" value=<%=student._id%>>
+                                <button type="submit" name="Request" value="Approve" style="background-color: green;">Approve</button>
+                                <button type="submit" name="Request" value="Reject" style="background-color: red;">Reject</button>
+                            </form>
+                            <%  }%>
+                            <%if(student.approved==true){%>
+                                <form action="/approvedelete" method="post">
+                                <input type="hidden" name="userID" value=<%=student._id%>>
+                                <button type="submit" name="Request" value="Remove" style="background-color: red;">Remove</button>
+                            </form>
+                           <% }%>
+                        </div>
+                        
+                    <%})%>
+                
+                <%}%>
+                <div class="row">
+                    <div class="box">
+                        <%if(Student==false){%>
+                        <p style="color:red ;">Please add Students</p>
+                         <%}%>
+                        <a href="/addstudent" class="btn btn-dark userbtn"><h2>send message to Students to join</h2></a>
+                    </div>
+                </div>
+                
+            </div>
+
+                </div>
+        </div>
+
+        <div id="page4" class="section" style="display: none;">
+            <div style="text-align: center;">
+                <video autoplay loop muted>
+                    <source src="video2.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <h1 style="color: white;">Welcome to AI-Gurukul</h1>
+                <h1 style="color: white;"><%=User.name %></h1>
+
+                
+            <div class="box">
+                <div class="box">
+                    <h1>Created Exams</h1>
+                </div>
+                <%if(Exam!=false){%>
+                    <%Exam.forEach(function(exam){%>
+                        <div class="item">
+                            <ul>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      View
+                                    </a>
+                                    <div class="dropdown-menu editView" aria-labelledby="navbarDropdown">
+                                        <p>Name: <%=exam.examName%></p>
+                                        <p>Class: <%=exam.className%></p>
+                                        <p>Start Date: <%= exam.examDate %> </p>
+                                        <p>End Date: <%= exam.examEndDate %> </p>
+                                        <form action="/removeExam" method="post">
+                                            <input type="hidden" name="examName" value="<%=exam.examName%>">
+                                            <button type="submit">Remove</button>
+                                        </form>
+                                        <form action="/viewQP" method="post">
+                                            <input type="hidden" name="examName" value="<%=exam.examName%>">
+                                            <button type="submit">View Question Paper</button>
+                                        </form>
+                                    </div>
+                                  </li>
+                                </ul>
+                            <h4><%=exam.examName%> </h4>
+                            <form action="/removeExam" method="post">
+                                <input type="hidden" name="examName" value="<%=exam.examName%>">
+                                <button type="submit" style="background-color: red;">Remove</button>
+                            </form>
+                        
+                            <form action="/getaddQuestion" method="post">
+                                <input type="hidden" name="examName" value="<%=exam.examName%>">
+                                <button type="submit" style="background-color: burlywood;">Add Questions</button>
+                            </form>
+                            <form action="/getaddCO" method="post">
+                                <input type="hidden" name="examName" value="<%=exam.examName%>">
+                                <button type="submit" style="background-color: burlywood;">Add CO</button>
+                            </form>
+                        </div>
+                        
+                    <%})%>
+                    
+                    
+                <%}%>
+                <div class="row">
+                    <div class="box">
+                        <%if(Exam==false){%>
+                        <p style="color:red ;">You have not created any Exams</p>
+                         <%}%>
+                        <a href="/createExam" class="btn btn-dark userbtn"><h2>Create New Exam</h2></a>
+                    </div>
+                </div>
+                
+                
+            </div>
+
+            </div>
+        </div>
+
+
+        <div id="page5" style="display: none;" class="section">
+            <div style="text-align: center;">
+                <video autoplay loop muted>
+                    <source src="video2.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <h1 style="color: white;">Welcome to AI-Gurukul</h1>
+                <h1 style="color: white;"><%=User.name %></h1>
+                <hr>
+                
+                <a class="btn btn-dark" href="/autoEvaluate">Auto Check</a>
+                <hr>
+                <div class="flex-container">
+                    <%if(Ans!=false){%>
+                        <%Ans.forEach(function(ans){%>
+                            <div class="box">
+                            <h3 style="color: green;"><%=ans.obtainMarks%> <h3 style="color: yellowgreen;">(Default/Auto Evaluated)</h3></h3>
+                            <h3 style="color: black;"><%= ans.questionNo %> <%=ans.question.question%>  (max. Marks: <%=ans.question.maxMarks%>M )</h3>
+                            <h4 style="color: black;">Submitted Ans: <%= ans.answer %> </h4>
+                            <h6 style="color: black;">Exam: <%=ans.examName%></h6>
+                            <h6 style="color: black;">StudentUsername: <%=ans.studentUsername%></h6>
+                            </div>
+                        <%})%>
+                    <%}%>
+                    <%if(Ans==false){%>
+                        <h1>No submission is done yet</h1>
+                    <%}%>
+                    
+                </div>
+
+            </div>
+        </div>
+
+
+        <div id="page6" style="display: none;" class="section">
+            <div style="text-align: center;">
+                <video autoplay loop muted>
+                    <source src="video2.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <h1 style="color: white;">Welcome to AI-Gurukul</h1>
+                <h1 style="color: white;"><%=User.name %></h1>
+            
+                <div class="form-container">
+                    <h2 style="color: black;">Enter Your Paragraph</h2>
+                    
+                    <form action="/autoGenerate" method="post">
+                       
+                        <label for="paragraph">Paragraph:</label>
+            <textarea id="paragraph" name="paragraph" rows="6" placeholder="Enter your paragraph here..." required></textarea>
+
+            <label for="easy">Easy Questions:</label>
+            <input type="number" id="easy" name="easy" min="0" max="10" required>
+
+            <label for="medium">Medium Question:</label>
+            <input type="number" id="medium" name="medium" min="0" max="10" required>
+
+            <label for="hard">Hard Questions:</label>
+            <input type="number" id="hard" name="hard" min="0" max="10" required>
+            <hr>
+            <button type="submit">Submit</button>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- Add more sections as needed -->
+    </div>
+
+    <script>
+        function changePage(pageId, btnId) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.style.display = 'none';
+            });
+            document.querySelectorAll('.btn').forEach(section => {
+                section.style.backgroundColor="#333";
+                section.style.color="#fff";
+                
+            });
+
+            // Show the selected section
+            document.getElementById(pageId).style.display = 'block';
+            document.getElementById(btnId).style.backgroundColor="blanchedalmond";
+            document.getElementById(btnId).style.color="#333";
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+
+</body>
+</html>
